@@ -3,21 +3,27 @@ import Link from "next/link";
 import Logo from "../../../public/images/logo.png";
 import { IoIosArrowDown } from "react-icons/io";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 
 const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
   const menuNavigation = [
-    { name: "Hackathons", link: "/hackathons" },
+    { name: "Hackathons", link: "/hackathon" },
     { name: "Bounties", link: "/bounties", submenu: true },
     { name: "Grants", link: "/grants" },
     { name: "Jobs", link: "/jobs" },
     { name: "About", link: "/about" },
   ];
   return (
-    <div className="fixed h-[80px] shadow-md top-0 w-full z-40 py-4 font-montserrat bg-white flex items-start md:items-center justify-between px-4 md:px-8 lg:px-20">
+    <div className="fixed h-20 top-0 w-full z-40 py-4 font-montserrat bg-white flex items-start md:items-center justify-between px-4 md:px-8 lg:px-20">
       <div className="flex items-center justify-between w-full ">
-        <div className="">
+        <Link href="/" className="flex items-center gap-2">
           <Image src={Logo} alt="Logo" width={100} height={40} />
-        </div>
+        </Link>
         <div>
           <ul className="flex gap-8 items-center text-sm font-light">
             {menuNavigation?.map((item, index) => (
@@ -29,19 +35,97 @@ const Header = () => {
             ))}
           </ul>
         </div>
-        <div className="flex gap-2 items-center">
-          <div className="flex items-center gap-1">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <IoIosArrowDown size={10} />
+        <div className="hidden md:flex items-center gap-4">
+          <div className="relative">
+            <div
+              onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+              className="flex items-center gap-1 cursor-pointer"
+            >
+              <Avatar>
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              <IoIosArrowDown size={10} />
+            </div>
+            {isProfileDropdownOpen && (
+              <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-100 shadow-lg rounded-lg z-50 py-2">
+                <Link
+                  href="/profile"
+                  className="block px-4 py-2 text-slate-700 hover:bg-gray-50 transition-colors font-montserrat"
+                  onClick={() => setIsProfileDropdownOpen(false)}
+                >
+                  View Profile
+                </Link>
+                <button
+                  onClick={() => {
+                    setIsProfileDropdownOpen(false);
+                    // Add logout logic here
+                  }}
+                  className="w-full text-left px-4 py-2 text-slate-700 hover:bg-gray-50 transition-colors font-montserrat"
+                >
+                  Log Out
+                </button>
+              </div>
+            )}
           </div>
-          <button className="px-4 py-2 bg-[#E4B95C] rounded-2xl text-sm font-light">
-            connect wallet
-          </button>
+          <Button className="bg-[#EBB643] hover:bg-[#d9a532] text-slate-900 font-normal font-montserrat rounded-full px-6">
+            Connect Wallet
+          </Button>
         </div>
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 text-slate-700"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-16 left-0 w-full bg-white border-b border-gray-100 shadow-lg z-50 flex flex-col p-4 space-y-4">
+          <Link
+            href="/hackathon"
+            className="text-slate-700 font-medium"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Hackathons
+          </Link>
+          <Link
+            href="/bounties"
+            className="text-slate-700 font-medium"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Bounties
+          </Link>
+          <Link
+            href="/grants"
+            className="text-slate-700 font-medium"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Grants
+          </Link>
+          <Link
+            href="/jobs"
+            className="text-slate-700 font-medium"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Jobs
+          </Link>
+          <Link
+            href="/about"
+            className="text-slate-700 font-medium"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Button className="bg-[#EBB643] hover:bg-[#d9a532] text-slate-900 font-semibold rounded-full w-full">
+            Connect Wallet
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

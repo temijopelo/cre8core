@@ -47,7 +47,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 footer_bg">
           {/* Brand Column */}
-          <div className="col-span-1 md:col-span-5 space-y-6">
+          <div className="col-span-12 md:col-span-5 space-y-6">
             <h2 className="text-4xl font-normal text-slate-900 leading-tight font-mont">
               Cre8core Labs Fueling <br />
               the Creative Layer of <br />
@@ -70,28 +70,28 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          {footerLinks.map((section, index) => (
-          <div key={index} className="col-span-1 md:col-span-2 space-y-6">
-            <h3 className="text-lg font-semibold text-slate-500 font-montserrat">
-              {section.title}
-            </h3>
-            <ul className="space-y-4 text-slate-500 font-montserrat font-light">
-                {section.links.map((link, linkIndex) => (
-              <li key={linkIndex}>
-                <Link
-                  href={link.href}
-                  className="hover:text-[#EBB643] transition-colors"
-                >
-                  {link.name}
-                </Link>
-              </li>
-                ))}
-             
-            </ul>
-          </div>))}
-
-          
-
+          <div className="col-span-12 md:col-span-7 space-y-6 flex justify-around md:flex-row flex-col">
+            {footerLinks.map((section, index) => (
+              <div key={index} className="">
+                <h3 className="text-lg font-semibold text-slate-500 mb-3 font-montserrat">
+                  {section.title}
+                </h3>
+                <ul className="space-y-4 text-slate-500 font-montserrat font-light">
+                  {section.links.map((link, linkIndex) => (
+                    <li key={linkIndex}>
+                      <Link
+                        href={link.href}
+                        className="hover:text-[#EBB643] transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-300/50 flex flex-col md:flex-row items-center justify-between gap-4">
           <Link href="/">

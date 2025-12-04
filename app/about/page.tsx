@@ -1,9 +1,20 @@
-import React from 'react';
+import AboutHero from "@/components/common/Hero/AboutHero";
+import AboutJourney from "@/components/common/Section/AboutJourney";
+import AboutLab from "@/components/common/Section/AboutLab";
+import AboutMission from "@/components/common/Section/AboutMission";
+import AboutNumber from "@/components/common/Section/AboutNumber";
+import AboutValue from "@/components/common/Section/AboutValue";
+import React from "react";
 
 export default function AboutPage() {
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-            <h1 className="text-4xl font-bold text-gray-800">About Page - Coming Soon</h1>
-        </div>
-    );
+  return (
+    <div className="| ">
+      <AboutHero />
+      <AboutMission />
+      <AboutLab />
+      <AboutNumber />
+      <AboutValue />
+      <AboutJourney />
+    </div>
+  );
 }

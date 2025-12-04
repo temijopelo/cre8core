@@ -5,7 +5,7 @@ const HackathonPage = () => {
   return (
     <ComingSoon
       title="Coming Soon!"
-      description="Will host large-scale developer builderthon for projects on Base in various \ndemography"
+      description="Will host large-scale developer builderthon for projects on Base in various demography"
     />
   );
 };
