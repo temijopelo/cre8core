@@ -1,7 +1,13 @@
 import React from "react";
+import ComingSoon from "@/components/common/ComingSoon";
 
-const Hackathon = () => {
-  return <div>Hackathon</div>;
+const HackathonPage = () => {
+  return (
+    <ComingSoon
+      title="Coming Soon!"
+      description="Will host large-scale developer builderthon for projects on Base in various \ndemography"
+    />
+  );
 };
 
-export default Hackathon;
+export default HackathonPage;

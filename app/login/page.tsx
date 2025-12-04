@@ -124,7 +124,10 @@ const Login = () => {
               </span>
               <span>Forgot password?</span>
             </span>
-            <button className="w-full bg-linear-to-r to-[#EFEFEF] hover:bg-linear-to-l hover:to-[#EFEFEF] hover:from-[#3B5488] from-[#3B5488] to-20% text-black py-4 px-6 rounded-4xl my-6 font-montserrat">
+            <button
+              onClick={() => router.push("/hackathon")}
+              className="w-full bg-linear-to-r to-[#EFEFEF] hover:bg-linear-to-l hover:to-[#EFEFEF] hover:from-[#3B5488] from-[#3B5488] to-20% text-black py-4 px-6 rounded-4xl my-6 font-montserrat"
+            >
               Sign In
             </button>
             <span className="text-[14px] text-[#EFEFEFE8]">
