@@ -11,6 +11,9 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { RxRocket } from "react-icons/rx";
+import FutureOfWeb3 from "@/components/common/Section/FutureOfWeb3";
+import { useRouter } from "next/navigation";
 
 // Mock Data
 const categories = [
@@ -91,9 +94,73 @@ const jobs = [
   },
 ];
 
-export default function JobsPage() {
+const opportunities = [
+  {
+    JobTitle: "Lead Blockchain Engineer",
+    title: "BaseFi Protocol",
+    range: "$200k-$280k",
+    description: "Remote Senior Level",
+    color: "bg-[#1C47A2]",
+  },
+  {
+    JobTitle: "Head of Design",
+    title: "BASE Labs",
+    range: "$160K - $220K",
+    description: "San Francisco • Lead Level",
+    color: "bg-[#8A38F5]",
+  },
+  {
+    JobTitle: "Community Manager",
+    title: "BASE Ecosystem",
+    range: "$70K - $100K",
+    description: "Remote Mid Level",
+    color: "bg-[#9B6A00]",
+  },
+];
+
+function JobCard({
+  JobTitle,
+  title,
+  range,
+  description,
+  color,
+}: {
+  JobTitle: string;
+  title: string;
+  range: string;
+  description: string;
+  color: string;
+}) {
   return (
-    <div className="min-h-screen bg-gray-50 pb-12">
+    <div className="min-h-[239px] bg-[#F7F8FB] justify-around flex flex-col p-4 rounded-lg">
+      <div className="flex gap-3 items-center">
+        <span
+          className={`${color} p-3 flex items-center justify-center w-12 h-12 rounded-full`}
+        >
+          <RxRocket color="white" size={24} />
+        </span>{" "}
+        <span>
+          <p className="font-semibold font-nunito">{JobTitle}</p>
+          <p className="font-montserrat text-sm">{title}</p>
+        </span>
+      </div>
+      <div>
+        <p className="font-nunito font-semibold mb-1">{range}</p>
+        <p className="font-montserrat text-sm text-[#030406B8]">
+          {description}
+        </p>
+      </div>
+      <Button className="bg-[#E4B95C] hover:bg-[#E4B95C]/50 py-5 text-white rounded-2xl">
+        View Details
+      </Button>
+    </div>
+  );
+}
+
+export default function JobsPage() {
+  const router = useRouter();
+  return (
+    <div className="min-h-screen bg-gray-50 ">
       {/* Hero Section */}
       <div className="relative h-[400px] w-full">
         <Image
@@ -119,7 +186,10 @@ export default function JobsPage() {
                 <Button className="bg-[#EBB643] hover:bg-[#d9a532] text-white font-medium px-8 py-6 rounded-full font-montserrat">
                   Browse All Jobs
                 </Button>
-                <Button className="bg-transparent border border-white text-white hover:bg-white/10 font-medium px-8 py-6 rounded-full font-montserrat">
+                <Button
+                  onClick={() => router.push("/jobs/create")}
+                  className="bg-transparent border border-white text-white hover:bg-white/10 font-medium px-8 py-6 rounded-full font-montserrat"
+                >
                   Post a Job
                 </Button>
               </div>
@@ -128,7 +198,7 @@ export default function JobsPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 -mt-8 relative z-10">
+      <div className="container mx-auto px-4 -mt-8 mb-10 relative z-10">
         {/* Search & Filter Bar */}
         <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-8 flex flex-col md:flex-row gap-4 items-center">
           <div className="relative flex-grow">
@@ -299,15 +369,95 @@ export default function JobsPage() {
                       <span>Closes in {job.closesIn}</span>
                     </div>
                   </div>
-                  <Button className="w-full md:w-auto bg-[#EBB643] hover:bg-[#d9a532] text-slate-900 font-medium px-8 rounded-full font-montserrat">
+                  <Button className="w-full md:w-auto bg-[#EBB643] hover:bg-[#d9a532] text-white font-medium px-8 rounded-full font-montserrat">
                     Apply now
                   </Button>
                 </div>
               </div>
             ))}
+
+            <div className="flex flex-col items-center justify-center gap-2 font-montserrat mt-5">
+              <Button className=" bg-[#EFEFEF] hover:bg-[#EFEFEF]/50 text-[#030406] font-medium px-8 rounded-full ">
+                Load More Jobs
+              </Button>
+              <p>Showing 5 of 247 total jobs</p>
+            </div>
           </div>
         </div>
       </div>
+
+      <div className="bg-[#ffffff] p-12">
+        <div className="max-w-xl mx-auto text-center">
+          <h4 className="text-2xl font-semibold mb-3">
+            Featured Job Opportunities
+          </h4>
+          <p className="font-montserrat text-[#666666]">
+            Hand-picked positions from top companies in the BASE ecosystem
+          </p>
+        </div>
+        <div className="grid grid-cols-3 gap-10 mt-10 max-w-[90%] mx-auto">
+          {opportunities.map((opportunity) => (
+            <JobCard
+              JobTitle={opportunity.JobTitle}
+              title={opportunity.title}
+              key={opportunity.JobTitle}
+              color={opportunity.color}
+              range={opportunity.range}
+              description={opportunity.description}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="bg-[#EFEFEF] p-12">
+        <div className="max-w-xl mx-auto text-center">
+          <h4 className="text-2xl font-semibold mb-3">
+            Companies Hiring on BASE
+          </h4>
+          <p className="font-montserrat text-[#666666]">
+            Join innovative teams building the future of Web3
+          </p>
+        </div>
+        <div className="flex flex-wrap mt-10 gap-10 justify-center items-center">
+          <img
+            src="/images/01.svg"
+            alt="Company 1"
+            className="  object-contain"
+          />
+          <img
+            src="/images/02.svg"
+            alt="Company 2"
+            className="  object-contain"
+          />
+          <img
+            src="/images/03.svg"
+            alt="Company 3"
+            className="  object-contain"
+          />
+          <img
+            src="/images/04.svg"
+            alt="Company 4"
+            className="  object-contain"
+          />
+          <img
+            src="/images/05.svg"
+            alt="Company 5"
+            className="  object-contain"
+          />
+          <img
+            src="/images/06.svg"
+            alt="Company 6"
+            className="  object-contain"
+          />
+        </div>
+      </div>
+
+      <FutureOfWeb3
+        heading="Ready to Launch Your Web3 Career?"
+        description="Join thousands of professionals who've found their dream jobs in the BASE ecosystem. Your next opportunity is just one click away."
+        text="Create your profile"
+        textOutline="Browse all jobs"
+        show={false}
+      />
     </div>
   );
 }

@@ -6,11 +6,13 @@ const FutureOfWeb3 = ({
   textOutline,
   heading,
   description,
+  show = true,
 }: {
   text?: string;
   textOutline?: string;
   heading?: string;
   description?: string;
+  show?: boolean;
 }) => {
   return (
     <div className="bg-[#0D214C] text-white">
@@ -31,22 +33,24 @@ const FutureOfWeb3 = ({
             {textOutline || " Contact Us"}
           </Button>
         </div>
-        <div>
-          <ul className="flex flex-col md:flex-row justify-center items-center gap-5">
-            <li className="flex gap-2 items-center">
-              <IoCheckmark />
-              <span>Free to join</span>
-            </li>
-            <li className="flex gap-2 items-center">
-              <IoCheckmark />
-              <span> No platform fees</span>
-            </li>
-            <li className="flex gap-2 items-center">
-              <IoCheckmark />
-              <span> Instant access</span>
-            </li>
-          </ul>
-        </div>
+        {show && (
+          <div>
+            <ul className="flex flex-col md:flex-row justify-center items-center gap-5">
+              <li className="flex gap-2 items-center">
+                <IoCheckmark />
+                <span>Free to join</span>
+              </li>
+              <li className="flex gap-2 items-center">
+                <IoCheckmark />
+                <span> No platform fees</span>
+              </li>
+              <li className="flex gap-2 items-center">
+                <IoCheckmark />
+                <span> Instant access</span>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
