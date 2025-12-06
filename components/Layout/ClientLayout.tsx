@@ -7,8 +7,7 @@ import Header from "../common/Header/page";
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isAuthPage =
-    pathname === "/login" || pathname === "/signup" || pathname === "/";
+  const isAuthPage = pathname === "/login" || pathname === "/signup";
 
   return (
     <div className="flex flex-col min-h-screen">
