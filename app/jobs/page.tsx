@@ -162,7 +162,7 @@ export default function JobsPage() {
   return (
     <div className="min-h-screen bg-gray-50 ">
       {/* Hero Section */}
-      <div className="relative h-[400px] w-full">
+      <div className="container mx-auto rounded-2xl border overflow-hidden mt-10 relative min-h-[450px] w-full">
         <Image
           src="/images/jobsherobg.svg"
           alt="Jobs Hero"
@@ -198,10 +198,10 @@ export default function JobsPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 -mt-8 mb-10 relative z-10">
+      <div className="container mx-auto px-4 mt-8 mb-10 relative z-10">
         {/* Search & Filter Bar */}
         <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-8 flex flex-col md:flex-row gap-4 items-center">
-          <div className="relative flex-grow">
+          <div className="relative grow">
             <Search
               className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
               size={20}
@@ -247,7 +247,7 @@ export default function JobsPage() {
                     <span className="text-gray-600 group-hover:text-[#EBB643] transition-colors font-roboto">
                       {cat.name}
                     </span>
-                    <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full text-xs font-medium group-hover:bg-[#EBB643]/10 group-hover:text-[#EBB643] transition-colors">
+                    <span className="bg-gray-100 w-8 h-8 flex items-center justify-center text-gray-500 rounded-full text-xs font-medium group-hover:bg-[#EBB643]/10 group-hover:text-[#EBB643] transition-colors">
                       {cat.count}
                     </span>
                   </li>
@@ -315,20 +315,22 @@ export default function JobsPage() {
                       {job.logo}
                     </div>
                     <div>
-                      <h2 className="text-xl font-bold text-slate-900 font-montserrat">
+                      <h2 className="text-xl font-bold text-slate-900 font-nunito">
                         {job.title}
                       </h2>
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mt-1 font-roboto">
-                        <span className="font-medium text-slate-700">
+                      <div className="flex flex-col font-montserrat gap-2 text-sm text-gray-500 mt-1 ">
+                        <span className="font-medium  text-slate-700">
                           {job.company}
                         </span>
-                        <div className="flex items-center gap-1">
-                          <MapPin size={14} />
-                          <span>{job.location}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock size={14} />
-                          <span>Posted {job.posted}</span>
+                        <div className="flex gap-2">
+                          <div className="flex items-center gap-1">
+                            <MapPin size={14} />
+                            <span>{job.location}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Clock size={14} />
+                            <span>Posted {job.posted}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -343,7 +345,7 @@ export default function JobsPage() {
                   </div>
                 </div>
 
-                <p className="text-gray-600 mb-6 font-roboto leading-relaxed">
+                <p className="text-gray-600 mb-6 font-montserrat leading-relaxed">
                   {job.description}
                 </p>
 
@@ -351,7 +353,7 @@ export default function JobsPage() {
                   {job.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium font-roboto"
+                      className="px-3 py-1 bg-[#E4B95C52] text-[#9B6A00] text-sm rounded-lg font-medium font-roboto"
                     >
                       {tag}
                     </span>
